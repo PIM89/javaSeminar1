@@ -82,13 +82,14 @@ public class Main {
         public static Boolean isPalindrome(String s) {
             int left = 0;
             int right = s.length() - 1;
+            s = s.toLowerCase();
             while (right - left > 0) {
                 if (Character.isLetterOrDigit(s.charAt(right)) == false) {
                     right -= 1;
                     continue;
                 }
                 while (Character.isLetterOrDigit(s.charAt(left)) == false) left += 1;
-                if (s.toLowerCase().charAt(right) != s.toLowerCase().charAt(left)) {
+                if (s.charAt(right) != s.charAt(left)) {
                     return false;
                 } else {
                     right -= 1;
