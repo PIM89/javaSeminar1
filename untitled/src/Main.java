@@ -4,24 +4,23 @@ public class Main {
         //System.out.print(Solution.removeElement(new int[]{0, 1, 2, 2, 3, 0, 4, 2, 5}, 2));
         //Solution.merge(new int[] {8, 9, 10, 0, 0, 0}, 3,new int[] {2,5,6}, 3);
         //System.out.print(Solution.reverseWords("the sky is blue"));
-        //System.out.print(Solution.isPalindrome("A man, a plan, a canal: Panama"));
+//        System.out.print(Solution.isPalindrome("A man, a plan, a canal: Panama"));
     }
 
     class Solution {
         public static String mergeAlternately(String word1, String word2) {
             StringBuilder res = new StringBuilder();
-            int maxLen = word1.length();
-            int minLen = word2.length();
-            if (word1.length() < word2.length()) {
-                maxLen = word2.length();
-                minLen = word1.length();
-            }
+            int maxLen = Math.max(word1.length(), word2.length());
+            int minLen = Math.min(word1.length(), word2.length());
             for (int i = 0; i < maxLen; i++) {
                 if (i < minLen) {
                     res = res.append(word1.charAt(i));
                     res = res.append(word2.charAt(i));
-                } else if (i >= word1.length()) res = res.append(word2.charAt(i));
-                else if (i >= word2.length()) res = res.append(word1.charAt(i));
+                } else if (i >= word1.length()) {
+                    res = res.append(word2.charAt(i));
+                } else if (i >= word2.length()) {
+                    res = res.append(word1.charAt(i));
+                }
             }
             return String.valueOf(res);
         }
@@ -84,11 +83,11 @@ public class Main {
             int right = s.length() - 1;
             s = s.toLowerCase();
             while (right - left > 0) {
-                if (Character.isLetterOrDigit(s.charAt(right)) == false) {
+                if (!Character.isLetterOrDigit(s.charAt(right))) {
                     right -= 1;
                     continue;
                 }
-                while (Character.isLetterOrDigit(s.charAt(left)) == false) left += 1;
+                while (!Character.isLetterOrDigit(s.charAt(left))) left += 1;
                 if (s.charAt(right) != s.charAt(left)) {
                     return false;
                 } else {
